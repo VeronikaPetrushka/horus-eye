@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useCallback } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         width: '47%',
-        height: height * 0.1,
+        height: height * 0.075,
         borderWidth: 0.5,
         borderColor: '#7b4c1c',
         backgroundColor: '#dcc9a3',

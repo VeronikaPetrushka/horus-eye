@@ -7,10 +7,26 @@ const Icons = ({ type, active }) => {
   let iconStyle = [styles.icon];
 
   switch (type) {
-    // case 'home':
-    //   imageSource = require('../assets/panel/home.png');
-    //   active && iconStyle.push(styles.active);
-    //   break;
+    case 'home':
+      imageSource = require('../assets/panel/1.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'lib':
+      imageSource = require('../assets/panel/2.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'museum':
+      imageSource = require('../assets/panel/3.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'dig':
+      imageSource = require('../assets/panel/4.png');
+      active && iconStyle.push(styles.active);
+      break;
+    case 'score':
+      imageSource = require('../assets/panel/5.png');
+      active && iconStyle.push(styles.active);
+      break;
     case 'close':
         imageSource = require('../assets/common/close.png');
         iconStyle.push(styles.brown);
