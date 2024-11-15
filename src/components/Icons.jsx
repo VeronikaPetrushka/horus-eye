@@ -31,6 +31,25 @@ const Icons = ({ type, active }) => {
         imageSource = require('../assets/common/close.png');
         iconStyle.push(styles.brown);
     break;
+    case 'back':
+        imageSource = require('../assets/common/back.png');
+    break;
+    case 'arrow':
+        imageSource = require('../assets/common/arrow.png');
+        iconStyle.push(styles.brown);
+    break;
+    case 'hint':
+        imageSource = require('../assets/quiz/hint.png');
+    break;
+    case 'live':
+        imageSource = require('../assets/quiz/live.png');
+    break;
+    case 'live-gone':
+        imageSource = require('../assets/quiz/live-gone.png');
+    break;
+    case 'coin':
+        imageSource = require('../assets/quiz/coin.png');
+    break;
   }
 
   return (

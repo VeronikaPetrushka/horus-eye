@@ -5,9 +5,17 @@ import React
 import { enableScreens } from 'react-native-screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-// import { MusicProvider } from './src/constants/music';
-// import MusicPlayer from './src/components/MusicPlayer';
+import { MusicProvider } from './src/constants/music';
+import MusicPlayer from './src/components/MusicPlayer';
 import HomeScreen from './src/screens/HomeScreen';
+import ArticlesScreen from './src/screens/ArticlesScreen';
+import LibraryScreen from './src/screens/LibraryScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
+import TopicsScreen from './src/screens/TopicsScreen';
+import QuizScreen from './src/screens/QuizScreen';
+import MuseumScreen from './src/screens/MuseumScreen';
+import ArtifactDetailsScreen from './src/screens/ArtifactDetailsScreen';
+import ResultsScreen from './src/screens/ResultsScreen';
 
 enableScreens();
 
@@ -41,8 +49,8 @@ const App = () => {
     // }, []);
   
     return (
-        // <MusicProvider>
-        //     <MusicPlayer />
+        <MusicProvider>
+            <MusicPlayer />
             <NavigationContainer>
             {/* {
                 !loaderIsEnded ? (
@@ -68,11 +76,51 @@ const App = () => {
                             component={HomeScreen} 
                             options={{ headerShown: false }} 
                         />
+                        <Stack.Screen 
+                            name="ArticlesScreen" 
+                            component={ArticlesScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="LibraryScreen" 
+                            component={LibraryScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="DetailsScreen" 
+                            component={DetailsScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="TopicsScreen" 
+                            component={TopicsScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="QuizScreen" 
+                            component={QuizScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="MuseumScreen" 
+                            component={MuseumScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="ArtifactDetailsScreen" 
+                            component={ArtifactDetailsScreen} 
+                            options={{ headerShown: false }} 
+                        />
+                        <Stack.Screen 
+                            name="ResultsScreen" 
+                            component={ResultsScreen} 
+                            options={{ headerShown: false }} 
+                        />
                     </Stack.Navigator>
                      {/* )
                  } */}
             </NavigationContainer>
-        // </MusicProvider>
+         </MusicProvider>
     );
 };
 

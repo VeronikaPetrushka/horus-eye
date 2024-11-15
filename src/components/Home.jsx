@@ -3,6 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from "rea
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import avatarOptions from '../constants/avatar';
+import WelcomeModal from './WelcomeModal';
+import SettingsModal from './SettingsModal';
 import UserProfile from './UserProfile';
 import AboutModal from './AboutModal';
 
@@ -10,8 +12,10 @@ const { height } = Dimensions.get('window');
 
 const Home = () => {
     const navigation = useNavigation();
+    const [welcomeModalVisible, setWelcomeModalVisible] = useState(true);
     const [aboutModalVisible, setAboutModalVisible] = useState(false);
     const [userProfileModalVisible, setUserProfileModalVisible] = useState(false);
+    const [settingsModalVisible, setSettingsModalVisible] = useState(false);
     const [uploadedImage, setUploadedImage] = useState({ uri: Image.resolveAssetSource(require('../assets/avatars/user.png')).uri });
     const [userName, setUserName] = useState('');  
 
@@ -59,6 +63,13 @@ const Home = () => {
         await loadName();
     };
 
+    const closeSettingsModal = async () => {
+        setSettingsModalVisible(false);
+        setUploadedImage({ uri: Image.resolveAssetSource(require('../assets/avatars/user.png')).uri });
+        await loadAvatar();
+        await loadName();
+    };
+
     return(
         <View style={styles.container}>
 
@@ -90,14 +101,16 @@ const Home = () => {
                 <Text style={styles.btnTxt}>About us</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('SettingsScreen')}>
+            <TouchableOpacity style={styles.btn} onPress={() => setSettingsModalVisible(true)}>
                 <Text style={styles.btnTxt}>Settings</Text>
             </TouchableOpacity>
 
             </View>
 
+            <WelcomeModal visible={welcomeModalVisible} onClose={() => setWelcomeModalVisible(false)} />
             <UserProfile visible={userProfileModalVisible} onClose={closeUserProfileModal}/>
             <AboutModal visible={aboutModalVisible} onClose={() => setAboutModalVisible(false)}/>
+            <SettingsModal visible={settingsModalVisible} onClose={closeSettingsModal}/>
         </View>
     )
 };
@@ -117,11 +130,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         padding: 7,
-        paddingHorizontal: 15,
+        paddingHorizontal: 7,
         borderRadius: 15,
         backgroundColor: 'rgba(220, 201, 163, 0.55)',
         zIndex: 10,
-        marginBottom: height * 0.02
+        marginBottom: height * 0.05
     },
 
     imageContainer: {
@@ -129,7 +142,7 @@ const styles = StyleSheet.create({
         width: height * 0.07,
         height: height * 0.07,
         alignItems: 'center',
-        borderRadius: 100,
+        borderRadius: 13,
         overflow: 'hidden',
         marginRight: 10,
     },
@@ -159,11 +172,11 @@ const styles = StyleSheet.create({
 
     image: {
         width: '100%',
-        height: height * 0.48,
-        resizeMode: 'contain',
+        height: height * 0.35,
+        resizeMode: 'cover',
         borderRadius: 12,
         overflow: 'hidden',
-        marginBottom: height * 0.02
+        marginBottom: height * 0.08
     },
 
     title: {

@@ -7,7 +7,7 @@ const { height } = Dimensions.get('window');
 
 const MenuPanel = () => {
     const navigation = useNavigation();
-    const [activeButton, setActiveButton] = useState('HomeScreen');
+    const [activeButton, setActiveButton] = useState('');
 
     const handleNavigate = (screen) => {
         setActiveButton(screen);
@@ -52,9 +52,9 @@ const MenuPanel = () => {
 
             <View style={styles.btnContainer}>
                 <TouchableOpacity 
-                    style={[styles.button, activeButton === 'DiggingScreen' && styles.activeButton]} 
-                    onPress={() => handleNavigate('DiggingScreen')}>
-                    <Icons type={'dig'} active={activeButton === 'DiggingScreen'}/>
+                    style={[styles.button, activeButton === 'TopicsScreen' && styles.activeButton]} 
+                    onPress={() => handleNavigate('TopicsScreen')}>
+                    <Icons type={'dig'} active={activeButton === 'TopicsScreen'}/>
                 </TouchableOpacity>
             </View>
 
