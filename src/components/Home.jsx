@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import avatarOptions from '../constants/avatar';
 import WelcomeModal from './WelcomeModal';
+import BonusModal from './DailyBonus';
 import SettingsModal from './SettingsModal';
 import UserProfile from './UserProfile';
 import AboutModal from './AboutModal';
@@ -13,11 +14,15 @@ const { height } = Dimensions.get('window');
 const Home = () => {
     const navigation = useNavigation();
     const [welcomeModalVisible, setWelcomeModalVisible] = useState(true);
+    const [bonusModalVisible, setBonusModalVisible] = useState(false);
     const [aboutModalVisible, setAboutModalVisible] = useState(false);
     const [userProfileModalVisible, setUserProfileModalVisible] = useState(false);
     const [settingsModalVisible, setSettingsModalVisible] = useState(false);
     const [uploadedImage, setUploadedImage] = useState({ uri: Image.resolveAssetSource(require('../assets/avatars/user.png')).uri });
     const [userName, setUserName] = useState('');  
+    const [buttonDisabled, setButtonDisabled] = useState(false);
+    const [timeLeft, setTimeLeft] = useState('00:00:00');
+    const [intervalId, setIntervalId] = useState(null);
 
     const loadAvatar = async () => {
         try {
@@ -50,12 +55,71 @@ const Home = () => {
         }
       };
     
-      useFocusEffect(
-        useCallback(() => {
-            loadAvatar();
-            loadName();
-        }, [])
-    );
+      const loadTimer = async () => {
+        try {
+          const lastClaimTime = await AsyncStorage.getItem('lastClaimTime');
+          const currentTime = new Date().getTime();
+          if (lastClaimTime) {
+            const timeDifference = currentTime - parseInt(lastClaimTime);
+            const timeRemaining = 86400000 - timeDifference;
+            if (timeRemaining > 0) {
+              setButtonDisabled(true);
+              setTimeLeft(formatTime(timeRemaining));
+              startCountdown(timeRemaining);
+            } else {
+              setButtonDisabled(false);
+              setTimeLeft('00:00:00');
+            }
+          } else {
+            setButtonDisabled(false);
+            setTimeLeft('00:00:00');
+          }
+        } catch (error) {
+          console.error('Error loading timer:', error);
+        }
+      };
+    
+      const startCountdown = (timeRemaining) => {
+        if (intervalId) {
+          clearInterval(intervalId);
+        }
+    
+        const newIntervalId = setInterval(() => {
+          if (timeRemaining <= 0) {
+            clearInterval(newIntervalId);
+            setButtonDisabled(false);
+            setTimeLeft('00:00:00');
+          } else {
+            setTimeLeft(formatTime(timeRemaining));
+            timeRemaining -= 1000;
+          }
+        }, 1000);
+    
+        setIntervalId(newIntervalId);
+      };
+    
+      const formatTime = (milliseconds) => {
+        const hours = Math.floor(milliseconds / 3600000);
+        const minutes = Math.floor((milliseconds % 3600000) / 60000);
+        const seconds = Math.floor((milliseconds % 60000) / 1000);
+        return `${padTime(hours)}:${padTime(minutes)}:${padTime(seconds)}`;
+      };
+    
+      const padTime = (time) => {
+        return time < 10 ? `0${time}` : time;
+      };
+    
+      const handleBonusPress = async () => {
+        if (buttonDisabled) return;
+    
+        setBonusModalVisible(true);
+        const currentTime = new Date().getTime();
+        await AsyncStorage.setItem('lastClaimTime', currentTime.toString());
+    
+        setButtonDisabled(true);
+        loadTimer();
+      };
+
 
       const closeUserProfileModal = async () => {
         setUserProfileModalVisible(false);
@@ -68,7 +132,24 @@ const Home = () => {
         setUploadedImage({ uri: Image.resolveAssetSource(require('../assets/avatars/user.png')).uri });
         await loadAvatar();
         await loadName();
+        await loadTimer();
     };
+
+    useFocusEffect(
+        useCallback(() => {
+          loadAvatar();
+          loadName();
+          loadTimer();
+        }, [])
+      );
+
+      useEffect(() => {
+        return () => {
+          if (intervalId) {
+            clearInterval(intervalId);
+          }
+        };
+      }, [intervalId]);
 
     return(
         <View style={styles.container}>
@@ -89,8 +170,14 @@ const Home = () => {
 
             <View style={styles.btnContainer}>
 
-            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('BonusScreen')}>
-                <Text style={styles.btnTxt}>Daily bonus</Text>
+            <TouchableOpacity
+                style={[styles.btn, buttonDisabled && {opacity: 0.6}]}
+                onPress={handleBonusPress}
+                disabled={buttonDisabled}
+                >
+                <Text style={styles.btnTxt}>
+                    {buttonDisabled ? `${timeLeft}` : 'Daily bonus'}
+                </Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ArticlesScreen')}>
@@ -108,6 +195,7 @@ const Home = () => {
             </View>
 
             <WelcomeModal visible={welcomeModalVisible} onClose={() => setWelcomeModalVisible(false)} />
+            <BonusModal visible={bonusModalVisible} onClose={() => setBonusModalVisible(false)} />
             <UserProfile visible={userProfileModalVisible} onClose={closeUserProfileModal}/>
             <AboutModal visible={aboutModalVisible} onClose={() => setAboutModalVisible(false)}/>
             <SettingsModal visible={settingsModalVisible} onClose={closeSettingsModal}/>

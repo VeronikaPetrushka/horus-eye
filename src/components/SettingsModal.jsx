@@ -49,6 +49,8 @@ const SettingsModal = ({ visible, onClose }) => {
             await AsyncStorage.removeItem('uploadedImage');
             await AsyncStorage.removeItem('totalScore');
             await AsyncStorage.removeItem('artifacts');
+            await AsyncStorage.removeItem('lastClaimTime');
+            await AsyncStorage.removeItem('bonusDay');
 
             setShowResetConfirmation(false);
             onClose();
@@ -78,7 +80,7 @@ const SettingsModal = ({ visible, onClose }) => {
                     {showResetConfirmation ? (
                         <>
                             <Text style={styles.confirmationText}>
-                                Are you sure you want to reset your progress? It will reset your account along with your daily game progress, score, and collected artifacts!
+                                Are you sure you want to reset your progress? It will reset your account along with your daily bonuses, score, and collected artifacts!
                             </Text>
                             <TouchableOpacity style={[styles.resetBtn, {marginTop: 0}]} onPress={handleReset}>
                                 <Text style={styles.resetBtnText}>Reset</Text>

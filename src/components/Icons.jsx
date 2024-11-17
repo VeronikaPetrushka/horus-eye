@@ -50,6 +50,18 @@ const Icons = ({ type, active }) => {
     case 'coin':
         imageSource = require('../assets/quiz/coin.png');
     break;
+    case 'bonus':
+        imageSource = require('../assets/decor/bonus.png');
+        iconStyle.push(styles.bonus);
+    break;
+    case 'no-bonus':
+        imageSource = require('../assets/decor/no-bonus.png');
+        iconStyle.push(styles.bonus);
+    break;
+    case 'yes-bonus':
+        imageSource = require('../assets/decor/yes-bonus.png');
+        iconStyle.push(styles.bonus);
+    break;
   }
 
   return (
@@ -77,7 +89,12 @@ const styles = StyleSheet.create({
     height: '100%',
     objectFit: 'cover',
     tintColor: '#7b4c1c',
-  }
+  },
+  bonus: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain'
+  },
 });
 
 export default Icons;
