@@ -16,14 +16,14 @@ const AboutModal = ({ visible, onClose }) => {
                 <View style={styles.modalContent}>
                 <ScrollView style={styles.ScrollView}>
                     <Text style={styles.modalText}>
-                    Welcome to <Text style={styles.bold}>HorusEye</Text> - Ancient Quizzes - your essential companion on a journey through the world of ancient civilizations and mythology! Our platform is designed for anyone eager to learn, explore, and discover new horizons of knowledge through interactive quizzes and engaging features.
+                    Welcome to <Text style={styles.bold}>Horos Ancient Quizzes</Text> - your essential companion on a journey through the world of ancient civilizations and mythology! Our platform is designed for anyone eager to learn, explore, and discover new horizons of knowledge through interactive quizzes and engaging features.
                     </Text>
                     <Text style={styles.subTitle}>Key Features:</Text>
                     <Text style={styles.modalText}>
                     <Text style={styles.bold}>Knowledge Library:</Text> Explore our catalog that contains detailed descriptions of gods and mythological beings from various cultures. You will learn about their legends, attributes, and roles in the lives of ancient peoples, helping you to gain a deeper understanding of their worldview.
                     </Text>
                     <Text style={styles.modalText}>
-                    <Text style={styles.bold}>Artifact Museum:</Text> Your journey in HorusEye becomes even more exciting with the Artifact Museum. As you progress through the quizzes, you will unearth unique artifacts that hold significance for different civilizations. Each artifact comes with a detailed description, revealing its history, cultural significance, and role in the lives of ancient peoples.
+                    <Text style={styles.bold}>Artifact Museum:</Text> Your journey in Horos Ancient Quizzes becomes even more exciting with the Artifact Museum. As you progress through the quizzes, you will unearth unique artifacts that hold significance for different civilizations. Each artifact comes with a detailed description, revealing its history, cultural significance, and role in the lives of ancient peoples.
                     </Text>
                     <Text style={styles.modalText}>
                     <Text style={styles.bold}>Archaeological Digs:</Text> Participate in an engaging archaeological quiz where you need to answer questions to uncover artifacts and learn more about ancient cultures. This combines elements of gaming and education.
@@ -38,14 +38,14 @@ const AboutModal = ({ visible, onClose }) => {
                     <Text style={styles.bold}>Daily Bonus:</Text> Enjoy daily bonuses that will make your learning experience even more enjoyable and help you in your research.
                     </Text>
                     <Text style={styles.modalText}>
-                    <Text style={styles.bold}>Account Registration:</Text> Create your account and choose an authentic avatar to showcase your uniqueness in the world of HorusEye.
+                    <Text style={styles.bold}>Account Registration:</Text> Create your account and choose an authentic avatar to showcase your uniqueness in the world of Horos Ancient Quizzes.
                     </Text>
                     <Text style={styles.modalText}>
                     <Text style={styles.bold}>Music:</Text> Enjoy atmospheric music that accompanies your journey through the world of ancient civilizations, creating a unique atmosphere for learning and exploration.
                     </Text>
                     <Text style={styles.subTitle}>Explore, Learn, and Play!</Text>
                     <Text style={styles.modalText}>
-                    <Text style={styles.bold}>HorusEye:</Text> Ancient Quizzes is not just an app, but your opportunity to immerse yourself in a world of knowledge and fascinating facts. We invite you to embark on an exciting journey into the past! Start your exploration today!
+                    <Text style={styles.bold}>Horos Ancient Quizzes:</Text> is not just an app, but your opportunity to immerse yourself in a world of knowledge and fascinating facts. We invite you to embark on an exciting journey into the past! Start your exploration today!
                     </Text>
                     </ScrollView>
                     <TouchableOpacity style={styles.closeButton} onPress={onClose}>
