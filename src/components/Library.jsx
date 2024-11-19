@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, FlatList, Dimensions, ImageBackground } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import library from '../constants/library.js';
 
@@ -34,6 +34,7 @@ const Library = () => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
         <View style={styles.container}>
             <FlatList
                 data={library}
@@ -42,6 +43,7 @@ const Library = () => {
                 contentContainerStyle={styles.listContainer}
             />
         </View>
+        </ImageBackground>
     );
 };
 
@@ -54,7 +56,6 @@ const styles = StyleSheet.create({
         padding: 20,
         paddingTop: height * 0.07,
         paddingBottom: height * 0.12,
-        backgroundColor: '#FDF3E7',
     },
     listContainer: {
         flexDirection: 'column',
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontSize: 16,
         textAlign: 'center',
-        color: '#7b4c1c',
+        color: '#ccb59a',
     },
     detailsButton: {
         marginTop: 10,

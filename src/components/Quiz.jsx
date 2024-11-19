@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, Modal } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions, Modal, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import Icons from './Icons';
@@ -261,23 +261,24 @@ const Quiz = ({ image, topic, quiz }) => {
 
   if (isQuizFinished) {
     return (
+      <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
       <View style={styles.container}>
         <Text style={styles.finishTitle}>Quiz finished !</Text>
         <Text style={styles.finishText}>{quiz.finalText}</Text>
         <Image source={quiz.artifactImage} style={styles.artifactImage} />
         <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: height * 0.02}}>
-            <Text style={styles.scoreText}>Total score: </Text>
+            <Text style={[styles.scoreText, {color: '#FDF3E7'}]}>Total score: </Text>
             <View style={styles.coinIcon}>
                 <Icons type={'coin'} />
             </View>
-            <Text style={styles.scoreText}>{totalScore}</Text>
+            <Text style={[styles.scoreText, {color: '#FDF3E7'}]}>{totalScore}</Text>
         </View>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <Text style={styles.scoreText}>Final score: </Text>
+        <Text style={[styles.scoreText, {color: '#FDF3E7'}]}>Final score: </Text>
             <View style={styles.coinIcon}>
                 <Icons type={'coin'} />
             </View>
-            <Text style={styles.scoreText}>{score}</Text>
+            <Text style={[styles.scoreText, {color: '#FDF3E7'}]}>{score}</Text>
         </View>
         <TouchableOpacity style={styles.tryAgainBtn} onPress={handleTryAgain}>
             <Text style={styles.tryAgainBtnTxt}>Try again</Text>
@@ -287,12 +288,14 @@ const Quiz = ({ image, topic, quiz }) => {
         </TouchableOpacity>
 
       </View>
+      </ImageBackground>
     );
   }
 
   const currentQuestion = quiz.questions[currentQuestionIndex];
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
     <View style={styles.container}>
 
       <Text style={styles.topic}>{topic}</Text>
@@ -342,7 +345,7 @@ const Quiz = ({ image, topic, quiz }) => {
         </View>
       </View>
 
-      <View style={{height: height * 0.06}} />
+      <View style={{height: height * 0.02}} />
 
       {renderAnswerOptions()}
 
@@ -416,6 +419,7 @@ const Quiz = ({ image, topic, quiz }) => {
        </Modal>
 
     </View>
+    </ImageBackground>
   );
 };
 
@@ -428,20 +432,19 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 30,
     paddingTop: height * 0.07,
-    backgroundColor: '#FDF3E7',
   },
   topic: {
     fontSize: 24,
     fontWeight: '900',
     marginBottom: height * 0.05,
-    color: '#7b4c1c',
+    color: '#FDF3E7',
     textAlign: 'center',
   },
   finishTitle: {
     fontSize: 28,
     fontWeight: '900',
     marginBottom: height * 0.05,
-    color: '#7b4c1c',
+    color: '#FDF3E7',
     textAlign: 'center',
   },
   image: {
@@ -454,8 +457,8 @@ const styles = StyleSheet.create({
   },
   question: {
     fontSize: 20,
-    marginBottom: height * 0.04,
-    color: '#7b4c1c',
+    marginBottom: height * 0.02,
+    color: '#FDF3E7',
     textAlign: 'center',
     fontWeight: '600',
     height: height * 0.06,
@@ -484,7 +487,8 @@ const styles = StyleSheet.create({
   finishText: {
     fontSize: height * 0.023,
     textAlign: 'center',
-    marginBottom: height * 0.03
+    marginBottom: height * 0.03,
+    color: '#FDF3E7'
   },
   livesContainer: {
     flexDirection: 'row',
@@ -505,7 +509,11 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'space-between', 
     flexDirection: 'row', 
-    marginBottom: height * 0.02
+    marginBottom: height * 0.02,
+    backgroundColor: '#FDF3E7',
+    borderRadius: 10,
+    padding: 5,
+    paddingHorizontal: 10
   },
   scoreText: {
     fontSize: 20,
@@ -614,7 +622,7 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         marginBottom: 10,
         zIndex: 10,
-        marginTop: height * 0.15
+        marginTop: height * 0.12
     },
 
     tryAgainBtnTxt: {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Dimensions, Modal } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Dimensions, Modal, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import quiz from "../constants/quiz.js";
 
@@ -23,6 +23,7 @@ const Topics = () => {
     };
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
         <View style={styles.container}>
             <Text style={styles.title}>
                 {selectedTopic ? selectedTopic.name : "Select a Topic"}
@@ -113,6 +114,7 @@ const Topics = () => {
                 </Modal>
             )}
         </View>
+        </ImageBackground>
     );
 };
 
@@ -124,12 +126,11 @@ const styles = StyleSheet.create({
         justifyContent: "flex-start",
         padding: 30,
         paddingTop: height * 0.08,
-        backgroundColor: "#FDF3E7",
     },
     title: {
         fontSize: 24,
         fontWeight: "900",
-        color: "#7b4c1c",
+        color: "#FDF3E7",
         marginBottom: height * 0.02,
         textAlign: "center",
     },

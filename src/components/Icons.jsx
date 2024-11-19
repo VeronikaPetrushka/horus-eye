@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     objectFit: 'cover',
-    tintColor: '#7b4c1c',
+    tintColor: '#ccb59a',
   },
   bonus: {
     width: '100%',

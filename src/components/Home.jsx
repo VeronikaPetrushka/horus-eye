@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from "react-native"
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image, ImageBackground } from "react-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import avatarOptions from '../constants/avatar';
@@ -152,6 +152,7 @@ const Home = () => {
       }, [intervalId]);
 
     return(
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
         <View style={styles.container}>
 
             <TouchableOpacity style={styles.userContainer} onPress={() => setUserProfileModalVisible(true)}>
@@ -200,6 +201,7 @@ const Home = () => {
             <AboutModal visible={aboutModalVisible} onClose={() => setAboutModalVisible(false)}/>
             <SettingsModal visible={settingsModalVisible} onClose={closeSettingsModal}/>
         </View>
+        </ImageBackground>
     )
 };
 
@@ -211,7 +213,6 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         padding: 30,
         paddingTop: height * 0.07,
-        backgroundColor: '#FDF3E7'
     },
 
     userContainer: {

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Icons from "./Icons";
 
@@ -9,6 +9,7 @@ const ArtifactDetails = ({ name, article, image }) => {
     const navigation = useNavigation();
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
         <View style={styles.container}>
 
             <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
@@ -26,6 +27,7 @@ const ArtifactDetails = ({ name, article, image }) => {
             </View>
 
         </View>
+        </ImageBackground>
     );
 };
 
@@ -38,7 +40,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         paddingBottom: height * 0.2,
         paddingTop: height * 0.2,
-        backgroundColor: "#FDF3E7",
     },
 
     image: {
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginBottom: height * 0.03,
-        color: "#7b4c1c",
+        color: "#ccb59a",
     },
 
     textContainer: {
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
         fontWeight: "400",
         fontSize: 18,
         textAlign: "justify",
-        color: "#3C3C3C",
+        color: "#FDF3E7",
         paddingBottom: height * 0.03
     },
 

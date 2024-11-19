@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import artifactsData from '../constants/artifacts';
@@ -52,6 +52,7 @@ const Museum = () => {
   );
 
   return (
+    <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
     <View style={styles.container}>
       <Text style={styles.title}>Museum</Text>
       {artifacts.length > 0 ? (
@@ -74,6 +75,7 @@ const Museum = () => {
         </View>
       )}
     </View>
+    </ImageBackground>
   );
 };
 
@@ -87,20 +89,19 @@ const styles = StyleSheet.create({
     padding: 30,
     paddingTop: height * 0.07,
     paddingBottom: height * 0.12,
-    backgroundColor: '#FDF3E7'
   },
   title: {
     fontSize: 26,
     fontWeight: '800',
     marginBottom: height * 0.02,
     textAlign: 'center',
-    color: '#7b4c1c',
+    color: '#ccb59a',
   },
   noArtifactsText: {
     fontSize: 18,
     textAlign: 'center',
     marginTop: 20,
-    color: '#666',
+    color: '#ccb59a',
   },
   listContent: {
     width: width * 0.85,
@@ -125,19 +126,19 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#FDF3E7',
     textAlign: 'center',
     height: 60
   },
   detailsButton: {
     marginTop: 8,
-    backgroundColor: '#7b4c1c',
+    backgroundColor: '#ccb59a',
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 6,
   },
   detailsButtonText: {
-    color: '#fff',
+    color: '#7b4c1c',
     fontSize: 14,
     fontWeight: 'bold',
   },

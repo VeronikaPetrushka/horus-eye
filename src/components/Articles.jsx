@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, Text, StyleSheet, Dimensions, ScrollView, TouchableOpacity, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import articles from "../constants/articles";
 import Icons from "./Icons";
@@ -21,6 +21,7 @@ const Articles = () => {
     const { title, article, image } = articles[currentIndex];
 
     return (
+        <ImageBackground source={require('../assets/newDiz/back.png')} style={{flex: 1}}>
         <View style={styles.container}>
             <TouchableOpacity style={styles.icon} onPress={() => navigation.goBack()}>
                 <Icons type={"back"} />
@@ -45,6 +46,7 @@ const Articles = () => {
                 </TouchableOpacity>
             </View>
         </View>
+        </ImageBackground>
     );
 };
 
@@ -55,7 +57,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-start",
         paddingBottom: height * 0.2,
-        backgroundColor: "#FDF3E7",
     },
     image: {
         width: "100%",
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         textAlign: "center",
         marginBottom: height * 0.03,
-        color: "#7b4c1c",
+        color: "#ccb59a",
     },
     textContainer: {
         width: "100%",
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         fontWeight: "400",
         fontSize: 18,
         textAlign: "justify",
-        color: "#3C3C3C",
+        color: "#FDF3E7",
     },
     icon: {
         width: 60,
